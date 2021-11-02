@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+             http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+  version="2.1">
+  <persistence-unit name="devops-pu" transaction-type="JTA">
+    <jta-data-source>jdbc/devops-ds</jta-data-source>
+    <shared-cache-mode>NONE</shared-cache-mode>
+    <properties>
+      <property name="eclipselink.logging.logger" value="JavaLogger" />
+      <property name="eclipselink.logging.level" value="FINE" />
+      <property name="eclipselink.logging.parameters" value="true" />
+
+      <property name="hibernate.dialect" value="${hibernate.dialect}"/>
+      <property name="hibernate.format_sql" value="true"/>
+      <property name="wildfly.jpa.default-unit" value="true"/>
+    </properties>
+  </persistence-unit>
+
+  <persistence-unit name="devops-pu-non-ee-container" transaction-type="RESOURCE_LOCAL">
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <shared-cache-mode>NONE</shared-cache-mode>
+    <properties>
+      <property name="javax.persistence.jdbc.driver" value="${db.jdbc.driver}" />
+      <property name="javax.persistence.jdbc.url" value="${db.jdbc.url}" />
+      <property name="javax.persistence.jdbc.user" value="${db.username}" />
+      <property name="javax.persistence.jdbc.password" value="${db.password}" />
+
+      <property name="eclipselink.logging.logger" value="JavaLogger" />
+      <property name="eclipselink.logging.level" value="FINE" />
+      <property name="eclipselink.logging.parameters" value="true" />
+
+      <property name="hibernate.dialect" value="${hibernate.dialect}"/>
+      <property name="hibernate.format_sql" value="true"/>
+    </properties>
+  </persistence-unit>
+</persistence>

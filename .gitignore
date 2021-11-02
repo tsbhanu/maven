@@ -1,0 +1,9 @@
+/target/
+/tools/derby/data/
+/tools/hibernate-tools/target
+/tools/mysql/data/
+/tools/mysql/target
+/tools/mysql/.path
+/tools/db2/target
+/tools/oracle/target
+.DS_Store

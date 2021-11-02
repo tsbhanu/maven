@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering
+  SYSTEM "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<!-- See also -->
+<!-- http://docs.jboss.org/tools/4.0.0.Final/en/hibernatetools/html_single/index.html#hibernaterevengxmlfile -->
+
+<hibernate-reverse-engineering>
+
+  <type-mapping>
+    <sql-type jdbc-type="CHAR" length="1" hibernate-type="java.lang.String" />
+    <sql-type jdbc-type="DATE" hibernate-type="java.time.LocalDate" />
+  </type-mapping>
+
+  <table-filter match-name="schema_version" exclude="true" />
+  <table-filter match-name="user_entity" package="devops_project.domain.user"></table-filter>
+  <table-filter match-name="group_entity" package="devops_project.domain.group"></table-filter>
+  <table-filter match-name="user_group_relation" package="devops_project.domain.group"></table-filter>
+
+  <!-- for derby -->
+  <table-filter match-name="USER_ENTITY" package="devops_project.domain.user"></table-filter>
+  <table-filter match-name="GROUP_ENTITY" package="devops_project.domain.group"></table-filter>
+  <table-filter match-name="USER_GROUP_RELATION" package="devops_project.domain.group"></table-filter>
+
+</hibernate-reverse-engineering>

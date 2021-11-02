@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:composite="http://xmlns.jcp.org/jsf/composite" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<composite:interface>
+  <composite:attribute name="model" required="true" />
+</composite:interface>
+<composite:implementation>
+  <c:set var="model" value="#{cc.attrs.model}" />
+  <c:set var="pagination" value="#{model.condition.pagination}" />
+
+  #{pagination.totalRowCnt}件中#{pagination.rowNumFrom + 1}件目から#{pagination.rowNumTo + 1}件目を表示
+  <nav>
+    <ul class="pagination">
+      <li class="#{pagination.currentPageNum eq 1 ? 'disabled' : ''}"><h:commandLink id="first" disabled="#{pagination.currentPageNum eq 1}"
+          action="#{model.goToPage(1)}" p:area-label="First">
+          <f:ajax render="@form" />
+          <span>&#171;</span>
+        </h:commandLink></li>
+
+      <ui:repeat var="page" value="#{pagination.pageNums}">
+        <li class="#{page eq pagination.currentPageNum ? 'active' : ''}" ><h:commandLink id="page" value="#{page}" action="#{model.goToPage(page)}"
+            disabled="#{page eq pagination.currentPageNum}">
+            <f:ajax render="@form" />
+          </h:commandLink></li>
+      </ui:repeat>
+      <li class="#{pagination.lastPage ? 'disabled' : ''}"><h:commandLink id="last" disabled="#{pagination.lastPage}"
+          action="#{model.goToPage(pagination.lastPageNum)}" p:aria-label="Last">
+          <f:ajax render="@form" />
+          <span aria-hidden="true">&#187;</span>
+        </h:commandLink></li>
+    </ul>
+
+  </nav>
+
+</composite:implementation>
+</html>
